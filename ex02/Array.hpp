@@ -24,25 +24,21 @@ class Array
 		unsigned int	_size;
 
 	public:
-		/* Default constructor — empty array */
 		Array(void) : _elements(NULL), _size(0) {}
 
-		/* Parametric constructor — n elements initialized by default */
 		Array(unsigned int n) : _elements(new T[n]()), _size(n) {}
 
-		/* Copy constructor — deep copy */
 		Array(Array const &src) : _elements(NULL), _size(0)
 		{
 			*this = src;
 		}
 
-		/* Destructor */
+
 		~Array(void)
 		{
 			delete[] _elements;
 		}
 
-		/* Assignment operator — deep copy */
 		Array &operator=(Array const &rhs)
 		{
 			if (this != &rhs)
@@ -56,7 +52,6 @@ class Array
 			return *this;
 		}
 
-		/* Subscript operator */
 		T &operator[](unsigned int index)
 		{
 			if (index >= _size)
@@ -64,7 +59,6 @@ class Array
 			return _elements[index];
 		}
 
-		/* Const subscript operator */
 		T const &operator[](unsigned int index) const
 		{
 			if (index >= _size)
@@ -72,13 +66,11 @@ class Array
 			return _elements[index];
 		}
 
-		/* size() member function */
 		unsigned int size(void) const
 		{
 			return _size;
 		}
 
-		/* Exception class */
 		class OutOfBoundsException : public std::exception
 		{
 			public:

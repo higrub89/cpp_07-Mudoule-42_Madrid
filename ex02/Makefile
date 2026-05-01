@@ -1,36 +1,39 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+     #
-#    By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/04/30 00:11:00 by rhiguita          #+#    #+#              #
-#    Updated: 2026/04/30 00:11:00 by rhiguita         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-NAME		= array
+NAME        = array
+CXX         = c++
+CXXFLAGS    = -Wall -Wextra -Werror -std=c++98 -O3
+RM          = rm -rf
 
-CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+GREEN       = \033[0;32m
+YELLOW      = \033[0;33m
+RED         = \033[0;31m
+NC          = \033[0m
 
-SRCS		= main.cpp
-OBJS		= $(SRCS:.cpp=.o)
+OBJ_DIR     = obj
+
+SRCS        =	main.cpp
+
+OBJS        = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@echo "$(YELLOW)--- CREATION ./$(NAME)...$(NC)"
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@echo "$(GREEN)✅  SUCCESSFUL COMPILATION  ✅$(NC)"
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: %.cpp Array.hpp
+	@mkdir -p $(OBJ_DIR)
+	@echo "$(YELLOW) Compiling:$(NC) $<"
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@$(RM) $(OBJ_DIR)
+	@echo "$(RED)--- DELETION OF OBJECT FILES ---$(NC)"
 
 fclean: clean
-	rm -f $(NAME)
+	@$(RM) $(NAME)
+	@echo "$(RED)--- DELETED FILE ./$(NAME) ---$(NC)"
 
 re: fclean all
 

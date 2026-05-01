@@ -31,13 +31,11 @@ int main(int, char**)
 		mirror[i] = value;
 	}
 
-	/* Test: deep copy via copy constructor */
 	{
 		Array<int> tmp = numbers;
 		Array<int> test(tmp);
 	}
 
-	/* Test: values match mirror */
 	for (int i = 0; i < MAX_VAL; i++)
 	{
 		if (mirror[i] != numbers[i])
@@ -47,7 +45,6 @@ int main(int, char**)
 		}
 	}
 
-	/* Test: out-of-bounds access */
 	try
 	{
 		numbers[-2];
@@ -65,7 +62,6 @@ int main(int, char**)
 		std::cerr << e.what() << std::endl;
 	}
 
-	/* Test: deep copy independence */
 	{
 		Array<int> copy(numbers);
 		copy[0] = 42;
@@ -76,7 +72,6 @@ int main(int, char**)
 		}
 	}
 
-	/* Test: assignment operator deep copy */
 	{
 		Array<int> assigned;
 		assigned = numbers;
@@ -88,7 +83,6 @@ int main(int, char**)
 		}
 	}
 
-	/* Test: empty array */
 	{
 		Array<int> empty;
 		std::cout << "Empty array size: " << empty.size() << std::endl;
@@ -102,7 +96,6 @@ int main(int, char**)
 		}
 	}
 
-	/* Test: string array */
 	{
 		Array<std::string> strs(3);
 		strs[0] = "Hello";
@@ -112,7 +105,6 @@ int main(int, char**)
 			std::cout << strs[i] << std::endl;
 	}
 
-	/* Test: const array access */
 	{
 		Array<int> base(5);
 		for (unsigned int i = 0; i < base.size(); i++)
