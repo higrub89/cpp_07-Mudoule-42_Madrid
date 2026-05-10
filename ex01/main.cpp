@@ -15,6 +15,7 @@
 #include "iter.hpp"
 
 template <typename T>
+
 void print(T const &elem)
 {
 	std::cout << elem << std::endl;

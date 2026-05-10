@@ -17,6 +17,7 @@
 #include <cstddef>
 
 template <typename T>
+
 class Array
 {
 	private:
